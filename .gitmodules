@@ -1,0 +1,3 @@
+[submodule "dialect"]
+	path = dialect
+	url = ./dialect
