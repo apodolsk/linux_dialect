@@ -27,11 +27,11 @@ void syncx_init(syncx *x, cnt expected){
 }
 
 void (thr_sync)(syncx *x){
-    if(xadd(-1, &x->unsynced) != 1)
-        sem_wait(&x->synced);
+    if(must(xadd(-1, &x->unsynced)) != 1)
+        muste(sem_wait(&x->synced));
     else
         for(cnt i = 0; i < x->expected - 1 ; i++)
-            sem_post(&x->synced);
+            muste(sem_post(&x->synced));
 }
 
 static volatile uptr pausing;
