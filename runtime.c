@@ -67,8 +67,7 @@ void rdtsc(){
 inline
 void breakpoint(void){
     fflush(stdout);
-    raise(SIGINT);
-    asm volatile("int $3;");
+    raise(SIGABRT);
 }
 
 void panic(const char *_, ...){
