@@ -4,7 +4,7 @@
 #include <wrand.h>
 
 typedef struct thread{
-    nalloc_info nallocin;
+    nalloc_tls nallocin;
     rand_info randin;
     bool racing;
 } thread;

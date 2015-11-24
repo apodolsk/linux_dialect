@@ -8,7 +8,7 @@ void launch_test(void *test(void *), const char *name);
 struct syncx;
 typedef struct syncx syncx;
 void syncx_init(syncx *s, cnt expected);
-void thr_sync(syncx* x);
+void thr_sync(syncx *x);
 syncx *start_timing;
 syncx *stop_timing;
 

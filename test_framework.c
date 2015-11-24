@@ -41,7 +41,7 @@ static sem_t unpaused;
 static bool fully_paused;
 
 err (pause_universe)(void){
-    if(cas(1, &pausing, 0))
+    if(cas(1L, &pausing, 0L))
         return -1;
 
     sigs = 0;
