@@ -6,3 +6,6 @@
 #define HEAP_START 0x7fff00000000
 
 #define SLAB_SIZE PAGE_SIZE
+
+noreturn
+extern void panic(const char *_, ...);

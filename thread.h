@@ -5,7 +5,7 @@
 
 typedef struct thread{
     nalloc_tls nallocin;
-    rand_info randin;
+    rand_tls randin;
     bool racing;
 } thread;
 

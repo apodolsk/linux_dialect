@@ -12,7 +12,7 @@ static inline dptr wall_ns(void){
         muste(clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &_start));    \
         (expr);                                                     \
         struct timespec _end;                                       \
-        muste(clock_gettime(CLOCK_PROCES_CPUTIME_ID, &_end));       \
+        muste(clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &_end));      \
         1000 * (_end.tv_sec - _start.tv_sec) +                      \
                (_end.tv_nsec - _start.tv_nsec) / 1000000;           \
     })                                                              \
@@ -22,13 +22,13 @@ static inline dptr wall_ns(void){
 
 static inline struct timespec job_get_time(void){
     struct timespec start;
-    muste(clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start));
+    muste(clock_gettime(CLOCK_REALTIME, &start));
     return start;
 }
 
 static inline udptr job_time_diff(struct timespec start){
     struct timespec end;
-    muste(clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end));
+    muste(clock_gettime(CLOCK_REALTIME, &end));
     return (end.tv_sec - start.tv_sec) * 1000 +
            (end.tv_nsec - start.tv_nsec) / 1000000;
 }

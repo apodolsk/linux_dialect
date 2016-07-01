@@ -73,6 +73,7 @@ void breakpoint(void){
 void panic(const char *_, ...){
     breakpoint();
     abort();
+    __builtin_unreachable();
 }
 
 bool poisoned(void){
