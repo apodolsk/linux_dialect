@@ -3,7 +3,7 @@
 
 CASSERT(SLAB_SIZE == PAGE_SIZE);
 struct slab *(new_slabs)(cnt batch){
-    static struct slab *brk = (struct slab *) HEAP_START;
+    static struct slab *volatile brk = (struct slab *) HEAP_START;
     struct slab *s = brk;
     dbg cnt loops = 0;
     do{
