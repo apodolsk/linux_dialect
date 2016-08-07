@@ -1,5 +1,6 @@
 #include <sys/mman.h>
 #include <atomics.h>
+#include <sched.h>
 
 CASSERT(SLAB_SIZE == PAGE_SIZE);
 struct slab *(new_slabs)(cnt batch){
@@ -43,7 +44,7 @@ bool interrupts_enabled(void){
 
 err kyield(tid t){
     assert(t == -1);
-    pthread_yield();
+    muste(sched_yield());
     return 0;
 }
 
