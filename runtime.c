@@ -71,6 +71,7 @@ void breakpoint(void){
     raise(SIGABRT);
 }
 
+noinline
 void panic(const char *_, ...){
     breakpoint();
     abort();
