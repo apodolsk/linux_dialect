@@ -1,3 +1,3 @@
 [submodule "dialect"]
 	path = dialect
-	url = unix.andrew.cmu.edu:~apodolsk/repo/dialect
+	url = https://github.com/apodolsk/dialect.git
