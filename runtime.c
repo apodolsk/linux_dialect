@@ -5,20 +5,18 @@
 CASSERT(SLAB_SIZE == PAGE_SIZE);
 struct slab *(new_slabs)(cnt batch){
     static struct slab *volatile brk = (struct slab *) HEAP_START;
-    struct slab *s = brk;
+    struct slab *s;
     dbg cnt loops = 0;
-    do{
+    for(;;){
         s = xadd(SLAB_SIZE * batch, &brk);
         assert(loops++ < 4);
+        void *ret = mmap(s, SLAB_SIZE * batch, PROT_WRITE,
+                         MAP_PRIVATE | MAP_POPULATE | MAP_ANONYMOUS, -1, 0);
+        if(ret == s)
+            return s;
+        if(ret != MAP_FAILED)
+            munmap(ret, SLAB_SIZE * batch);
     }
-    while(MAP_FAILED == mmap(s, SLAB_SIZE * batch, PROT_WRITE,
-                             MAP_PRIVATE | MAP_POPULATE | MAP_ANONYMOUS, -1, 0));
-    pp(s);
-    return s;
-    /* struct slab *s = mmap(NULL, SLAB_SIZE * batch, PROT_WRITE, */
-    /*                       MAP_PRIVATE | MAP_POPULATE | MAP_ANONYMOUS, -1, 0); */
-    /* return s == MAP_FAILED ? EOOR(), NULL : s; */
-    
 }
 
 #include <pthread.h>
