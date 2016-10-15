@@ -1,7 +1,7 @@
 #pragma once
 
 #include <nalloc.h>
-#include <wrand.h>
+#include <wkrand.h>
 
 typedef struct thread{
     nalloc_tls nallocin;

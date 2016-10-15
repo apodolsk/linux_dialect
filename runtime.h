@@ -7,5 +7,3 @@
 
 #define SLAB_SIZE PAGE_SIZE
 
-noreturn
-extern void panic(const char *_, ...);
