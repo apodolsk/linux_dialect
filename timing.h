@@ -1,5 +1,8 @@
 #include <time.h>
 
+/* #define CLOCK_TYPE CLOCK_PROCESS_CPUTIME_ID */
+#define CLOCK_TYPE CLOCK_REALTIME_COARSE
+
 static inline dptr wall_ns(void){
     struct timespec t;                                      \
     muste(clock_gettime(CLOCK_REALTIME_COARSE, &t));        \
@@ -9,10 +12,10 @@ static inline dptr wall_ns(void){
 #define JOB_CPU_TIME(expr)                                          \
     ({                                                              \
         struct timespec _start;                                     \
-        muste(clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &_start));    \
+        muste(clock_gettime(CLOCK_TYPE, &_start));                  \
         (expr);                                                     \
         struct timespec _end;                                       \
-        muste(clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &_end));      \
+        muste(clock_gettime(CLOCK_TYPE, &_end));                    \
         1000 * (_end.tv_sec - _start.tv_sec) +                      \
                (_end.tv_nsec - _start.tv_nsec) / 1000000;           \
     })                                                              \
