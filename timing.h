@@ -25,13 +25,13 @@ static inline dptr wall_ns(void){
 
 static inline struct timespec job_get_time(void){
     struct timespec start;
-    muste(clock_gettime(CLOCK_REALTIME, &start));
+    muste(clock_gettime(CLOCK_TYPE, &start));
     return start;
 }
 
 static inline udptr job_time_diff(struct timespec start){
     struct timespec end;
-    muste(clock_gettime(CLOCK_REALTIME, &end));
+    muste(clock_gettime(CLOCK_TYPE, &end));
     return (end.tv_sec - start.tv_sec) * 1000 +
            (end.tv_nsec - start.tv_nsec) / 1000000;
 }
