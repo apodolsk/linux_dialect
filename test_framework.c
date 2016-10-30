@@ -130,7 +130,7 @@ void launch_test(void *t(void *), const char *test_name){
     thr_sync(start_timing);
     struct timespec start = job_get_time();
     thr_sync(stop_timing);
-    ppl(0, test_name, (iptr) job_time_diff(start));
+    puprintf("% -t% : %ms\n", test_name, nthreads, (iptr) job_time_diff(start));
     
     for(cnt i = 0; i < nthreads; i++)
         pthread_join(threads[i], NULL);
